@@ -1,0 +1,8 @@
+<script>alert("XSS")</script>
+<SCRIPT>alert("XSS")</SCRIPT>
+<script>alert`XSS`</script>
+<SC</script>RIPT>alert("XSS")</SCR</script>IPT>
+<script>alert("XSS")</script>{{PLACEHOLDER}}
+{{PLACEHOLDER}}<script>alert("XSS")</script>
+{{PLACEHOLDER}}<script>alert`XSS`</script>
+<script>alert`XSS`</script>{{PLACEHOLDER}}
