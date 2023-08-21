@@ -1,8 +1,11 @@
+[![CodeQL](https://github.com/tarekmulla/HaX/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/tarekmulla/HaX/actions/workflows/github-code-scanning/codeql) [![Snyk Security](https://github.com/tarekmulla/HaX/actions/workflows/snyk-security.yml/badge.svg)](https://github.com/tarekmulla/HaX/actions/workflows/snyk-security.yml)
+
 # HaX Tool
 Tool to perform different cyber attacks
 
 ## About the project
-This tool created to perform different cyber attacks to practice ethical hacking.
+This tool is designed for practicing ethical hacking by simulating various cyber attacks.
+
 The implemented attacks are:
 
 - CrossSite Scripting (XSS)
@@ -15,21 +18,24 @@ The application uses the following technology and tools.
 | [Python](https://www.python.org/) |  Build the atcual application |
 | [TKinter](https://docs.python.org/3/library/tkinter.html) | Python package (“Tk interface”) to build the GUI interface |
 | [Github actions](https://github.com/features/actions) | Automation pipelines |
-| [Snyk](https://snyk.io/) | [SAST](https://snyk.io/learn/application-security/static-application-security-testing/) analysis, [SCA](https://snyk.io/series/open-source-security/software-composition-analysis-sca/) analysis, and [Infrastructure as Code (IaC)](https://docs.snyk.io/scan-cloud-configurations/snyk-infrastructure-as-code) analysis. |
+| [Snyk](https://snyk.io/) | Security check ([SAST](https://snyk.io/learn/application-security/static-application-security-testing/) analysis, and [SCA](https://snyk.io/series/open-source-security/software-composition-analysis-sca/) analysis) |
 | [CodeQL](https://codeql.github.com/) | Discover vulnerabilities across the codebase |
 | [Dependabot](https://github.com/dependabot) | Send alert when the repository is using a dependency with a known vulnerability |
 
 
 ## How do I get set up? ##
-Feel free to clone the repository and create your own version of the application. However, kindly note that the source code is licensed under the `GNU General Public V3 License`. To learn more about the license and its terms, please refer to the complete license documentation available [here](./LICENSE).
+Feel free to clone the repository and create your own version of the application. However, kindly note that the source code is licensed under the `GPL-3.0 license`. To learn more about the license and its terms, please refer to the complete license documentation available [here](./LICENSE).
 
 
 ### Deployment prerequisites ###
 
 Before running the application, make sure to meet the following requirements:
 
-- Download and install python latest version, ese: https://www.python.org/downloads/
-- Install pip, see: https://pip.pypa.io/en/stable/installation/
+- Download and install python latest version, [check here.](https://www.python.org/downloads/)
+- Install pip, [check here.](https://pip.pypa.io/en/stable/installation/)
+- Install the required libraries listed in [requirements.txt](./requirements.txt) `python -m pip install -r requirements.txt`
+- Install TKinter `brew install python-tk`
+- The entry point is [main.py](./app/main.py), You can run the file using Makefile `make run`
 
 
 ## Who do I talk to? ##
