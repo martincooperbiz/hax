@@ -1,0 +1,13 @@
+from sys import path
+from os.path import realpath, dirname
+from app import App
+
+
+# import the root of the package
+module_path = dirname(realpath(__file__))
+path.append(module_path)
+
+
+if __name__ == "__main__":
+  app = App()
+  app.run()

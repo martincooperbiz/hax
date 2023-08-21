@@ -1,9 +1,9 @@
-from attack_request import AttackRequest, RequestType
+from classes.attack_request import AttackRequest, RequestType
 from requests import Response, post, get
 
 
 def send_http_request(attack_request: AttackRequest, attack_payload: str) -> Response:
-  """Create HTTP request"""
+  """initialize HTTP request and return response"""
   headers = {'User-Agent': 'Mozilla/5.0'}
   if attack_request.request_type == RequestType.POST:
     payload = {parameter: attack_payload for parameter in attack_request.paramaters}

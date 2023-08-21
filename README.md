@@ -16,6 +16,7 @@ This tool is meticulously crafted for ethical hacking practice, simulating diver
 The implemented attacks are:
 
 - CrossSite Scripting (XSS)
+- SQL injection (SQLi)
 
 
 ## 🧰 Tech stack

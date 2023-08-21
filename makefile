@@ -8,4 +8,4 @@ install-tk:
 	@brew install python-tk
 
 run:
-	@python3 app/main.py
+	@python3 hax/main.py

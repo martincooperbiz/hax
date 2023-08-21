@@ -1,5 +1,5 @@
-from attack_request import AttackRequest
-from utilities import send_http_request
+from classes.attack_request import AttackRequest
+from utilities.http_request import send_http_request
 import re
 from threading import Thread
 from time import sleep
