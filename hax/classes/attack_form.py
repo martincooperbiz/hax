@@ -32,7 +32,26 @@ class AttackForm(Toplevel):
     self.txt_log.delete(1.0, END)  # clear text
     self.ATTACK_NUM = 0
     self.payloads = self.load_payloads(placeholder_text, self.payloads_path)
-    attack.start(self.payloads, self.add_result)
+    attack.start(self.payloads, self.analyse_attack)
+
+  def analyse_attack(self, payload, response):
+    response_result = ""
+    response_result += f"PAYLOAD: {payload}\n"
+    response_result += f"REQUEST URL: {response.request.url}\n"
+    response_result += f"REQUEST HEADERS: {response.request.headers}\n"
+    response_result += f"REQUEST BODY: {response.request.body}\n"
+
+    is_success = self.is_attack_succeded(response)
+    if is_success:
+      response_result += "The attack has succeded\n\n"
+    else:
+      response_result += "The attack has failed\n\n"
+    response_result += "-" * 100
+    response_result += "\n" * 2
+    self.add_result(response_result, is_success)
+
+  def is_attack_succeded(self, response):
+    return False
 
   def add_result(self, result, is_success):
     self.txt_log.insert(END, result)

@@ -4,6 +4,7 @@ from classes.attack_request import AttackRequest, RequestType, AttackType
 from classes.attack import Attack
 from classes.attack_form import AttackForm
 from os.path import abspath, dirname
+from requests import Response
 
 
 class SqliForm(AttackForm):
@@ -72,3 +73,9 @@ class SqliForm(AttackForm):
     request = AttackRequest(url, request_type, parameters, AttackType.SQLi)
     attack = Attack(request)
     self.attack(attack, placeholder_text)
+
+  def is_attack_succeded(self, response: Response):
+    if response.status_code == 200:
+      return True
+    else:
+      return False

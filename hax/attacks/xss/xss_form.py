@@ -4,6 +4,10 @@ from classes.attack_request import AttackRequest, RequestType, AttackType
 from classes.attack import Attack
 from classes.attack_form import AttackForm
 from os.path import abspath, dirname
+import re
+
+
+XSS_SUCCESS_PATTEREN = r"<script[^\n]*>[^\n]*(`|\(\"|\(\')xss(`|\"\)|'\))[^\n]*<\/script[^\n]*>"
 
 
 class XssForm(AttackForm):
@@ -72,3 +76,7 @@ class XssForm(AttackForm):
     request = AttackRequest(url, request_type, parameters, AttackType.XSS)
     attack = Attack(request)
     self.attack(attack, placeholder_text)
+
+  def is_attack_succeded(self, response):
+    response_body = response.content.decode()
+    return re.search(pattern=XSS_SUCCESS_PATTEREN, string=response_body, flags=re.IGNORECASE)
