@@ -14,8 +14,6 @@ class XssForm(AttackForm):
   def init_form(self):
     self.title("CrossSite Scripting (XSS) attack")
 
-    self.lbl_banner = Label(self, text="CrossSite Scripting (XSS) attack")
-
     self.lbl_url = Label(self, text="URL (without GET params)")
     self.input_url = Entry(self, width=70)
 
@@ -39,26 +37,24 @@ class XssForm(AttackForm):
     self.txt_log = Text(self, height=30, width=120, yscrollcommand=self.ver_scrollbar.set)
     self.ver_scrollbar.config(command=self.txt_log.yview)
 
-    self.lbl_banner.grid(row=0, column=0, columnspan=4)
+    self.lbl_url.grid(row=0, column=0, pady=2, padx=5, sticky=W)
+    self.input_url.grid(row=0, column=1, pady=2, padx=5, sticky=W, columnspan=4)
 
-    self.lbl_url.grid(row=1, column=0, pady=2, padx=5, sticky=W)
-    self.input_url.grid(row=1, column=1, pady=2, padx=5, sticky=W, columnspan=4)
+    self.lbl_parameters.grid(row=1, column=0, pady=2, padx=5, sticky=W)
+    self.input_parameters.grid(row=1, column=1, pady=2, sticky=W, padx=5)
 
-    self.lbl_parameters.grid(row=2, column=0, pady=2, padx=5, sticky=W)
-    self.input_parameters.grid(row=2, column=1, pady=2, sticky=W, padx=5)
+    self.lbl_placeholder_text.grid(row=1, column=2, pady=2, padx=5, sticky=W)
+    self.input_placeholder_text.grid(row=1, column=3, pady=2, padx=5, sticky=W)
 
-    self.lbl_placeholder_text.grid(row=2, column=2, pady=2, padx=5, sticky=W)
-    self.input_placeholder_text.grid(row=2, column=3, pady=2, padx=5, sticky=W)
+    self.lbl_request_type.grid(row=2, column=0, pady=2, padx=5, sticky=W)
+    self.opt_request_type.grid(row=2, column=1, pady=2, padx=5, sticky=W)
 
-    self.lbl_request_type.grid(row=3, column=0, pady=2, padx=5, sticky=W)
-    self.opt_request_type.grid(row=3, column=1, pady=2, padx=5, sticky=W)
+    self.btn_start.grid(row=3, column=0, pady=2, padx=5, columnspan=4)
+    self.progbar_attacks.grid(row=4, column=0, pady=2, padx=5, columnspan=4)
 
-    self.btn_start.grid(row=4, column=0, pady=2, padx=5, columnspan=4)
-    self.progbar_attacks.grid(row=5, column=0, pady=2, padx=5, columnspan=4)
-
-    self.lbl_log.grid(row=6, column=0, pady=2, padx=5, sticky=W, columnspan=4)
-    self.txt_log.grid(row=7, column=0, pady=2, padx=5, columnspan=4)
-    self.ver_scrollbar.grid(row=7, column=4, sticky=N+S+W)
+    self.lbl_log.grid(row=5, column=0, pady=2, padx=5, sticky=W, columnspan=4)
+    self.txt_log.grid(row=6, column=0, pady=2, padx=5, columnspan=4)
+    self.ver_scrollbar.grid(row=6, column=4, sticky=N+S+W)
 
   def set_default_input(self):
     """default value for the input"""
