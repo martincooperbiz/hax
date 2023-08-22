@@ -47,7 +47,7 @@ _**Note**: Those steps are working for both macOS, and Linux_
 - Install pip, [check here](https://pip.pypa.io/en/stable/installation/).
 - Install TKinter `brew install python-tk` or `make install-tk`. _**Note**: You need to have brew installed_.
 - Set up a Python Virtual Environment (venv) by executing `make create-env` and then switch to the newly created venv using the command: `source ./.venv/bin/activate`. It's worth noting that the `make` command automatically installs the necessary libraries listed in [requirements.txt](./requirements.txt). If you prefer using your local environment instead of venv, you can achieve the same by running `python -m pip install -r requirements.txt` to install the required libraries.
-- The entry point is [main.py](./app/main.py), You can start the application by running `make run` or `python3 app/main.py`.
+- The entry point is [./hax/main.py](./hax/main.py), You can start the application by running `make run` or `python3 ./hax/main.py`.
 
 
 ## Who do I talk to?
