@@ -1,10 +1,11 @@
+"""HTTP Request wrapper module"""
 from classes.attack_request import AttackRequest, RequestType
-from requests import Response, post, get
+from requests import Response, get, post
 
 
 def send_http_request(attack_request: AttackRequest, attack_payload: str) -> Response:
   """initialize HTTP request and return response"""
-  headers = {'User-Agent': 'Mozilla/5.0'}
+  headers = {"User-Agent": "Mozilla/5.0"}
   if attack_request.request_type == RequestType.POST:
     payload = {parameter: attack_payload for parameter in attack_request.paramaters}
     response = post(url=attack_request.url, headers=headers, data=payload, timeout=30)

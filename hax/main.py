@@ -1,7 +1,8 @@
+"""The entry point to the application"""
+from os.path import dirname, realpath
 from sys import path
-from os.path import realpath, dirname
-from app import App
 
+from app import App
 
 # import the root of the package
 module_path = dirname(realpath(__file__))
