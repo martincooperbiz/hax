@@ -9,7 +9,8 @@ disable = [
   "E0401",
   "F0010",
   "W0718", # disable=broad-exception-caught
-  "W0201"
+  "W0201",
+  "E0611"
 ]
 
 [tool.isort]

@@ -2,7 +2,7 @@
 
 # HaX Tool
 
-A versatile tool designed to conduct various cyber attacks aimed at uncovering vulnerabilities.
+HaX is an AI-powered Cybersecurity tool designed to detect website vulnerabilities. Its cloud connection enhances capabilities for advanced analytics and modeling.
 
 <p align="center">
   <img src="/docs/images/HaX.png" alt="design" width="40%"/>
@@ -11,7 +11,7 @@ A versatile tool designed to conduct various cyber attacks aimed at uncovering v
 
 ## About the project
 
-This tool is meticulously crafted for ethical hacking practice, simulating diverse cyber attack payloads to detect successful outcomes.
+This tool is expertly designed for ethical hacking, using intelligent cyber attack simulations to identify successful outcomes. It uploads results to the cloud for advanced data analytics, refining models for future attacks.
 
 The implemented attacks are:
 
@@ -31,7 +31,9 @@ The application uses the following technology and tools.
 | [CodeQL](https://codeql.github.com/) | Discover vulnerabilities across the codebase |
 | [Dependabot](https://github.com/dependabot) | Send alert when the repository is using a dependency with a known vulnerability |
 | [flake8](https://flake8.pycqa.org/) | Python linting tool |
-
+| [mypy](https://mypy-lang.org/) | Python static type checker |
+| [isort](https://pycqa.github.io/isort/) | modules import organizer |
+| [pylint](https://pylint.readthedocs.io/en/latest/) | Python static code analyser |
 
 ## How do I get set up?
 

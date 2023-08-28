@@ -18,3 +18,11 @@ class AttackType(Enum):
   """All attack types"""
   XSS = 1
   SQLI = 2
+
+
+class Windows(Enum):
+  """All frames available"""
+  XSS = 1
+  SQLI = 2
+  SETTING = 20
+  ABOUT = 30
