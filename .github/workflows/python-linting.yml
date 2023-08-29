@@ -58,6 +58,7 @@ jobs:
           pytest --junitxml=pytest.xml --cov-report=xml:coverage.xml --cov=hax tests/
 
       - name: Pytest coverage comment
+        if: ${{ github.ref != 'refs/heads/main' }}
         id: coverageComment
         uses: MishaKav/pytest-coverage-comment@main
         with:
@@ -65,6 +66,7 @@ jobs:
           junitxml-path: ./pytest.xml
 
       - name: Check the output coverage
+        if: ${{ github.ref != 'refs/heads/main' }}
         run: |
           echo "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
