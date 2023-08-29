@@ -3,46 +3,45 @@ from os.path import abspath, dirname
 from tkinter import END, Button, Entry, Frame, Label, OptionMenu, Scrollbar, StringVar, Text, ttk
 from webbrowser import open_new
 
-from app import App
 from classes.attack_request import AttackRequest
 from PIL import Image, ImageTk
 
 
 class BaseFrame(Frame):
   """Frame for sub windows in the application"""
-  def __init__(self, master: App, title: str):
+  def __init__(self, master, title: str):
     self.master = master
-    super().__init__(master, bg=self.master.config["style"]["third_color"])
+    super().__init__(master, bg=self.master.setting["style"]["third_color"])  # type: ignore[attr-defined]
     self.master.columnconfigure(1, weight=1)
     self.master.rowconfigure(0, weight=1)
-    self.master.title(title)
+    self.master.title(title)  # type: ignore[attr-defined]
     self.__init_frame__()
 
   def __init_frame__(self):
     self.custom_style = ttk.Style()
     self.custom_style.theme_use('clam')
     self.custom_style.configure("progress.Horizontal.TProgressbar",
-                                background=self.master.config["style"]["primary_color"],
-                                troughcolor=self.master.config["style"]["secondary_color"],
-                                darkcolor=self.master.config["style"]["primary_color"],
-                                lightcolor=self.master.config["style"]["primary_color"],
-                                bordercolor=self.master.config["style"]["secondary_color"])
+                                background=self.master.setting["style"]["primary_color"],
+                                troughcolor=self.master.setting["style"]["secondary_color"],
+                                darkcolor=self.master.setting["style"]["primary_color"],
+                                lightcolor=self.master.setting["style"]["primary_color"],
+                                bordercolor=self.master.setting["style"]["secondary_color"])
 
   def __add_default__(self, widget_type, **parameters):
     """Add default parameters"""
     if widget_type in [Button] and "highlightbackground" not in parameters:
-      parameters["highlightbackground"] = self.master.config["style"]["third_color"]
+      parameters["highlightbackground"] = self.master.setting["style"]["third_color"]
     if widget_type not in [OptionMenu, ttk.Progressbar]:
       if "fg" not in parameters:
-        parameters["fg"] = self.master.config["style"]["secondary_color"]
+        parameters["fg"] = self.master.setting["style"]["secondary_color"]
       if "bg" not in parameters and widget_type not in [Entry]:
-        parameters["bg"] = self.master.config["style"]["third_color"]
+        parameters["bg"] = self.master.setting["style"]["third_color"]
 
       if widget_type is not Label:
         if "highlightbackground" not in parameters:
-          parameters["highlightbackground"] = self.master.config["style"]["border_color"]
+          parameters["highlightbackground"] = self.master.setting["style"]["border_color"]
         if "highlightcolor" not in parameters:
-          parameters["highlightcolor"] = self.master.config["style"]["primary_color"]
+          parameters["highlightcolor"] = self.master.setting["style"]["primary_color"]
         if "highlightthickness" not in parameters:
           parameters["highlightthickness"] = 1
     return parameters
@@ -63,7 +62,7 @@ class BaseFrame(Frame):
 
   def add_link(self, text, link, row, col):
     """Add text link to the frame in a specific grid cell"""
-    lbl_link = self.add_widget(Label, fg=self.master.config["style"]["primary_color"],
+    lbl_link = self.add_widget(Label, fg=self.master.setting["style"]["primary_color"],
                                text=text, justify="center", cursor="hand2")
     lbl_link.bind("<Button-1>", lambda e: open_new(link))
     lbl_link.grid(row=row, column=col)
@@ -113,7 +112,7 @@ class AttackFrame(BaseFrame):
 
   attack_num = 0
 
-  def __init__(self, master: App, title: str, payloads_path: str = ""):
+  def __init__(self, master, title: str, payloads_path: str = ""):
     super().__init__(master=master, title=title)
     self.set_default_input()
     self.attack = None
