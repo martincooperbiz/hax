@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install hax/requirements.txt
+          pip install -r hax/requirements.txt
 
       - name: Check python format
         run: |
@@ -50,7 +50,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install hax/requirements.txt
+          pip install -r hax/requirements.txt
 
       - name: Build coverage file
         run: |
