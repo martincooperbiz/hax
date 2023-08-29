@@ -49,7 +49,7 @@ class App(Tk):
     elif window == Windows.ABOUT:
       self.current_frame = AboutFrame(self)
     else:
-      raise NotImplementedError(f"The frame '{frame}' hasn't implemented yet")
+      raise NotImplementedError(f"The frame '{window}' hasn't implemented yet")
     self.current_frame.grid(row=0, column=1, sticky="nsew")
 
   def run(self):

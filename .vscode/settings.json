@@ -7,7 +7,7 @@
         "source.organizeImports": true
     }
   },
-  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "python.languageServer": "Pylance",
   "isort.args": ["--settings-file", "./pyproject.toml"],
   "pylint.args": ["--rcfile=./pyproject.toml"],
@@ -16,5 +16,5 @@
     "--config=.flake8"
   ],
   "editor.defaultFormatter": "ms-python.pylint",
-
+  "python.analysis.extraPaths": ["hax", "${workspaceFolder}/hax"]
 }

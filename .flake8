@@ -2,3 +2,5 @@
 max-line-length = 160
 extend-ignore = E114
 indent-size = 2
+exclude =
+  ./tests/*.py
