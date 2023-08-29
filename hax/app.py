@@ -16,6 +16,7 @@ class App(Tk):
   """class represents the main application form"""
   def __init__(self):
     super().__init__()
+    self.config: dict = {}
     self.load_config(f"{dirname(abspath(__file__))}/config.yml")
     self.main_menu = MainMenu(master=self)
     self.menubar = MenuBar(master=self)

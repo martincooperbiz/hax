@@ -1,6 +1,7 @@
 """The main menu of the application"""
 from tkinter import Frame, Label
 
+from app import App
 from classes.enums import Windows
 from PIL import Image, ImageTk
 
@@ -14,11 +15,11 @@ class MainMenu(Frame):
       self.image = image
       self.window = window
 
-  def __init__(self, master):
+  def __init__(self, master: App):
     self.master = master
     super().__init__(master, bg=self.master.config["style"]["secondary_color"])
     self.current_window = Windows.NONE
-    self.current_item = None
+    self.current_item = Label()
 
   def init_items(self, event_func):
     """Initialize the menu items"""
@@ -52,9 +53,9 @@ class MainMenu(Frame):
     """Call when a mouse click the menu item"""
     self.current_window = window
     if self.current_item:
-      self.current_item["bg"] = self.master.config["style"]["secondary_color"]
+      self.current_item["bg"] = self.master.config["style"]["secondary_color"]  # type: ignore[attr-defined]
     self.current_item = event.widget
-    self.current_item["bg"] = self.master.config["style"]["hover_color"]
+    self.current_item["bg"] = self.master.config["style"]["hover_color"]  # type: ignore[attr-defined]
     click_event_func(event, window)
 
   def create_menu_item(self, parent, text, image, window, click_event_func):

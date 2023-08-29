@@ -1,15 +1,16 @@
 """Base class for sub windows in the application"""
 from os.path import abspath, dirname
-from tkinter import END, Button, Entry, Frame, Label, OptionMenu, Scrollbar, StringVar, Text, Tk, ttk
+from tkinter import END, Button, Entry, Frame, Label, OptionMenu, Scrollbar, StringVar, Text, ttk
 from webbrowser import open_new
 
+from app import App
 from classes.attack_request import AttackRequest
 from PIL import Image, ImageTk
 
 
 class BaseFrame(Frame):
   """Frame for sub windows in the application"""
-  def __init__(self, master: Tk, title: str):
+  def __init__(self, master: App, title: str):
     self.master = master
     super().__init__(master, bg=self.master.config["style"]["third_color"])
     self.master.columnconfigure(1, weight=1)
@@ -112,7 +113,7 @@ class AttackFrame(BaseFrame):
 
   attack_num = 0
 
-  def __init__(self, master: Tk, title: str, payloads_path: str = ""):
+  def __init__(self, master: App, title: str, payloads_path: str = ""):
     super().__init__(master=master, title=title)
     self.set_default_input()
     self.attack = None
@@ -144,7 +145,7 @@ class AttackFrame(BaseFrame):
       return
     self.txt_log.delete(1.0, END)  # clear text
     self.attack_num = 0
-    self.payloads = self.load_payloads(placeholder_text, self.payloads_path)
+    self.payloads: list = self.load_payloads(placeholder_text, self.payloads_path)
     self.attack.start(self.payloads, self.add_result)
 
   def add_result(self, payload: str, attack_request: AttackRequest):
@@ -165,10 +166,10 @@ class AttackFrame(BaseFrame):
     # add tag using indices for the part of text to be highlighted
     self.txt_log.tag_add("SUCCESS" if attack_request.is_success else "FAILED", f"{row}.0", f"{row}.100")
     self.txt_log.see(END)
-    self.progbar_attacks.step(99.9 * 1 / len(self.payloads))
+    self.progbar_attacks.step(99.9 * (1 / len(self.payloads)))
     self.attack_num += 1
 
-  def load_payloads(self, placeholder_text, file_path):
+  def load_payloads(self, placeholder_text, file_path) -> list:
     """Load the attack payloads from a file"""
     with open(file_path, "r", encoding="UTF-8") as payloads_file:
       return [payload.strip("\n").replace("{{PLACEHOLDER}}", placeholder_text) for payload in payloads_file.readlines()]
