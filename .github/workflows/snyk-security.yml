@@ -30,7 +30,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=hax/requirements.txt --package-manager=pip --command=python3 --severity-threshold=high --sarif-file-output=snyk.sarif
+          args: --file=hax/requirements.txt --skip-unresolved --severity-threshold=high --sarif-file-output=snyk.sarif
           command: test
 
       - name: Upload result to GitHub Code Scanning
