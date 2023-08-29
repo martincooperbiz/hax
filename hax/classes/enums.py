@@ -22,6 +22,7 @@ class AttackType(Enum):
 
 class Windows(Enum):
   """All frames available"""
+  NONE = 0
   XSS = 1
   SQLI = 2
   SETTING = 20

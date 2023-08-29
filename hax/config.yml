@@ -1,4 +1,12 @@
 images:
-  logo: "docs/images/HaX.png"
+  logo: "hax/static/images/logo.png"
+  path: "hax/static/images"
 app:
   size: "800x375"
+style:
+  primary_color: "#0077ff"
+  secondary_color: "#000000"
+  third_color: "#e0e7ee"
+  forth_color: "#ffffff"
+  border_color: "#bbbbbb"
+  hover_color: "#222222"

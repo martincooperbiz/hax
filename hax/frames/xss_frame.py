@@ -19,15 +19,15 @@ class XssFrame(AttackFrame):
     super().__init_frame__()
 
     self.add_label("URL (without GET params)").grid(row=0, column=0)
-    self.input_url = self.add_entry(relief="flat", width=40)
+    self.input_url = self.add_entry(width=40)
     self.input_url.grid(row=0, column=1, columnspan=2, pady=(10, 0))
 
     self.add_label(text="Paramaters sep by comma\n(e.g. par1,par2)").grid(row=1, column=0)
-    self.input_parameters = self.add_entry(relief="flat", width=40)
+    self.input_parameters = self.add_entry(width=40)
     self.input_parameters.grid(row=1, column=1, columnspan=2)
 
     self.add_label("Placeholder Text\n(replaced in payloads)").grid(row=2, column=0)
-    self.input_placeholder_text = self.add_entry(relief="flat", width=40)
+    self.input_placeholder_text = self.add_entry(width=40)
     self.input_placeholder_text.grid(row=2, column=1, columnspan=2)
 
     self.add_label("Request type").grid(row=3, column=0)
@@ -55,5 +55,5 @@ class XssFrame(AttackFrame):
     parameters = self.input_parameters.get().split(",")
     placeholder_text = self.input_placeholder_text.get()
     request = AttackRequest(url, request_type, parameters, AttackType.XSS)
-    attack = XssAttack(request)
-    self.attack(attack, placeholder_text)
+    self.attack = XssAttack(request)
+    self.start_attack(placeholder_text)

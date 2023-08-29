@@ -3,7 +3,6 @@ from os.path import abspath, dirname
 from tkinter import END, Button, Entry, Frame, Label, OptionMenu, Scrollbar, StringVar, Text, Tk, ttk
 from webbrowser import open_new
 
-from classes.attack import Attack
 from classes.attack_request import AttackRequest
 from PIL import Image, ImageTk
 
@@ -11,36 +10,38 @@ from PIL import Image, ImageTk
 class BaseFrame(Frame):
   """Frame for sub windows in the application"""
   def __init__(self, master: Tk, title: str):
-    super().__init__(master, bg="#e0e7ee")
     self.master = master
+    super().__init__(master, bg=self.master.config["style"]["third_color"])
     self.master.columnconfigure(1, weight=1)
     self.master.rowconfigure(0, weight=1)
     self.master.title(title)
     self.__init_frame__()
 
   def __init_frame__(self):
-    self.grid(row=0, column=1, sticky="nsew")
-
     self.custom_style = ttk.Style()
     self.custom_style.theme_use('clam')
-    self.custom_style.configure("progress.Horizontal.TProgressbar", background="#07f", troughcolor="#000",
-                                darkcolor="#07f", lightcolor="#07f", bordercolor="#000")
+    self.custom_style.configure("progress.Horizontal.TProgressbar",
+                                background=self.master.config["style"]["primary_color"],
+                                troughcolor=self.master.config["style"]["secondary_color"],
+                                darkcolor=self.master.config["style"]["primary_color"],
+                                lightcolor=self.master.config["style"]["primary_color"],
+                                bordercolor=self.master.config["style"]["secondary_color"])
 
   def __add_default__(self, widget_type, **parameters):
     """Add default parameters"""
     if widget_type in [Button] and "highlightbackground" not in parameters:
-      parameters["highlightbackground"] = "#e0e7ee"
+      parameters["highlightbackground"] = self.master.config["style"]["third_color"]
     if widget_type not in [OptionMenu, ttk.Progressbar]:
       if "fg" not in parameters:
-        parameters["fg"] = "#000"
+        parameters["fg"] = self.master.config["style"]["secondary_color"]
       if "bg" not in parameters and widget_type not in [Entry]:
-        parameters["bg"] = "#e0e7ee"
+        parameters["bg"] = self.master.config["style"]["third_color"]
 
       if widget_type is not Label:
         if "highlightbackground" not in parameters:
-          parameters["highlightbackground"] = "#aaa"
+          parameters["highlightbackground"] = self.master.config["style"]["border_color"]
         if "highlightcolor" not in parameters:
-          parameters["highlightcolor"] = "#07f"
+          parameters["highlightcolor"] = self.master.config["style"]["primary_color"]
         if "highlightthickness" not in parameters:
           parameters["highlightthickness"] = 1
     return parameters
@@ -61,7 +62,8 @@ class BaseFrame(Frame):
 
   def add_link(self, text, link, row, col):
     """Add text link to the frame in a specific grid cell"""
-    lbl_link = self.add_widget(Label, fg="#07f", text=text, justify="center", cursor="hand2")
+    lbl_link = self.add_widget(Label, fg=self.master.config["style"]["primary_color"],
+                               text=text, justify="center", cursor="hand2")
     lbl_link.bind("<Button-1>", lambda e: open_new(link))
     lbl_link.grid(row=row, column=col)
 
@@ -72,6 +74,8 @@ class BaseFrame(Frame):
 
   def add_entry(self, **parameters):
     """"Add entry to the frame in a specific grid cell"""
+    if "relief" not in parameters:
+      parameters["relief"] = "flat"
     entry = self.add_widget(Entry, **parameters)
     return entry
 
@@ -111,6 +115,7 @@ class AttackFrame(BaseFrame):
   def __init__(self, master: Tk, title: str, payloads_path: str = ""):
     super().__init__(master=master, title=title)
     self.set_default_input()
+    self.attack = None
     if payloads_path:
       self.payloads_path = payloads_path
     else:
@@ -128,12 +133,19 @@ class AttackFrame(BaseFrame):
     self.txt_log.tag_config("SUCCESS", background="green")
     self.txt_log.tag_config("FAILED", background="red")
 
-  def attack(self, attack: Attack, placeholder_text: str):
+  def destroy(self) -> None:
+    if self.attack:
+      self.attack.stop_attack()
+    super().destroy()
+
+  def start_attack(self, placeholder_text: str):
     """Start the attack"""
+    if not self.attack:
+      return
     self.txt_log.delete(1.0, END)  # clear text
     self.attack_num = 0
     self.payloads = self.load_payloads(placeholder_text, self.payloads_path)
-    attack.start(self.payloads, self.add_result)
+    self.attack.start(self.payloads, self.add_result)
 
   def add_result(self, payload: str, attack_request: AttackRequest):
     """Add result to the log text component"""
