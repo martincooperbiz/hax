@@ -24,8 +24,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r hax/requirements.txt
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r hax/requirements.txt
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
@@ -33,7 +33,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=hax/requirements.txt --project-name=python --severity-threshold=high --sarif-file-output=snyk.sarif /hax
+          args: --file=hax/requirements.txt --package-manager=pip --command=python3 --severity-threshold=high --sarif-file-output=snyk.sarif
           command: test
 
       - name: Upload result to GitHub Code Scanning
