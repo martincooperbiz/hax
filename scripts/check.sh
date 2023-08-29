@@ -22,7 +22,7 @@ run_check "🔧 linting - " flake8 . --config=../.flake8
 
 run_check "🐉 check imports sorting - " isort --check --diff --color --settings-path=../pyproject.toml .
 
-run_check "🎯 static type checker - " mypy . --install-types --ignore-missing-imports --config-file=../pyproject.toml
+run_check "🎯 static type checker - " mypy . --ignore-missing-imports --config-file=../pyproject.toml
 
 run_check "🔩 static code analysis - " pylint . --rcfile=../pyproject.toml
 
