@@ -1,4 +1,5 @@
 """SQLI injection frame"""
+# pylint: disable=R0801
 from os.path import abspath, dirname
 from tkinter import INSERT, Tk
 

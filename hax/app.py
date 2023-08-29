@@ -61,4 +61,5 @@ class App(Tk):
     """load the application configuration file (YAML format)"""
     if not isfile(config_path):
       raise FileNotFoundError(f"Config file not found in path: {config_path}")
-    self.config = safe_load(open(config_path, encoding="UTF-8"))
+    with open(config_path, encoding="UTF-8") as config_file:
+      self.config = safe_load(config_file)

@@ -1,7 +1,6 @@
 """The main menu of the application"""
 from tkinter import Frame, Label
 
-from app import App
 from classes.enums import Windows
 from PIL import Image, ImageTk
 
@@ -10,12 +9,13 @@ class MainMenu(Frame):
   """The main menu of the application"""
   class MenuItem:
     """Class represent one menu item in the app"""
+    # pylint: disable=too-few-public-methods
     def __init__(self, name="", image="", window=Windows.NONE):
       self.name = name
       self.image = image
       self.window = window
 
-  def __init__(self, master: App):
+  def __init__(self, master):
     self.master = master
     super().__init__(master, bg=self.master.config["style"]["secondary_color"])
     self.current_window = Windows.NONE

@@ -16,14 +16,13 @@ run_check() {
 
 ret=0
 
-cd ./hax
 
-run_check "🔧 linting - " flake8 . --config=../.flake8
+run_check "🔧 linting - " flake8 ./hax --config=.flake8
 
-run_check "🐉 check imports sorting - " isort --check --diff --color --settings-path=../pyproject.toml .
+run_check "🐉 check imports sorting - " isort ./hax --check --diff --color --settings-path=pyproject.toml
 
-run_check "🎯 static type checker - " mypy . --ignore-missing-imports --config-file=../pyproject.toml
+run_check "🎯 static type checker - " mypy ./hax --ignore-missing-imports --config-file=pyproject.toml
 
-run_check "🔩 static code analysis - " pylint . --rcfile=../pyproject.toml
+run_check "🔩 static code analysis - " pylint ./hax --rcfile=pyproject.toml
 
 exit $ret
