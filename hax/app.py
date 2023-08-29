@@ -16,8 +16,8 @@ class App(Tk):
   """class represents the main application form"""
   def __init__(self):
     super().__init__()
-    self.config: dict = {}
-    self.load_config(f"{dirname(abspath(__file__))}/config.yml")
+    self.setting = {}
+    self.load_setting(f"{dirname(abspath(__file__))}/config.yml")
     self.main_menu = MainMenu(master=self)
     self.menubar = MenuBar(master=self)
     self.__init_components__()
@@ -25,7 +25,7 @@ class App(Tk):
 
   def __init_components__(self):
     self.title("HaX Cybersecurity tool")
-    self.geometry(self.config["app"]["size"])  # set the size of the app to specific dimension
+    self.geometry(self.setting["app"]["size"])  # set the size of the app to specific dimension
     self.resizable(False, False)
 
     self.menubar.init_items()
@@ -57,9 +57,9 @@ class App(Tk):
     """run the main application interface"""
     self.mainloop()
 
-  def load_config(self, config_path: str = "config.yml"):
+  def load_setting(self, config_path: str = "config.yml"):
     """load the application configuration file (YAML format)"""
     if not isfile(config_path):
       raise FileNotFoundError(f"Config file not found in path: {config_path}")
     with open(config_path, encoding="UTF-8") as config_file:
-      self.config = safe_load(config_file)
+      self.setting = safe_load(config_file)

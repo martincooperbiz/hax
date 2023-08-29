@@ -21,7 +21,7 @@ run_check "🔧 linting - " flake8 ./hax --config=.flake8
 
 run_check "🐉 check imports sorting - " isort ./hax --check --diff --color --settings-path=pyproject.toml
 
-run_check "🎯 static type checker - " mypy ./hax --ignore-missing-imports --config-file=pyproject.toml
+run_check "🎯 static type checker - " mypy ./hax --ignore-missing-imports --install-types --config-file=pyproject.toml
 
 run_check "🔩 static code analysis - " pylint ./hax --rcfile=pyproject.toml
 
