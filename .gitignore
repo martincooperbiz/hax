@@ -162,3 +162,66 @@ cython_debug/
 
 # macOS local files
 .DS_Store
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# terraform plan files
+*.plan
+
+# terraform variables files
+*.tfvars
+
+# ignore the hcl file (Dependency Lock File) as this repo represent a module
+.terraform.lock.hcl
+
+.tmp
+
+# ------- react js files --------
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build
+build/Release
+
+
+# Dependency directories
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+
+# Typescript v1 declaration files
+typings/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity

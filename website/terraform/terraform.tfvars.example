@@ -1,0 +1,7 @@
+app                = "hax"
+region             = "us-east-1"
+domain             = "hax.mulla.au"
+alert_emails       = ["alert@mulla.au"]
+images_path        = "./files/images"
+website_files_path = "./files/website"
+tags               = {}

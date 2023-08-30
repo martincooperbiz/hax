@@ -19,6 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Snyk CLI to check for security issues
+        # Snyk can be used to break the build when it detects security issues.
+        # In this case we want to upload the SAST issues to GitHub Code Scanning
+        uses: snyk/actions/setup@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
@@ -32,6 +39,14 @@ jobs:
         with:
           args: --file=hax/requirements.txt --skip-unresolved --severity-threshold=high --sarif-file-output=snyk.sarif
           command: test
+
+      # Runs Snyk Infrastructure as Code (IaC) analysis and uploads result to Snyk.
+      # Use || true to not fail the pipeline.
+      - name: Snyk IaC test and report
+        run: snyk iac test --severity-threshold=high --report # || true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        working-directory: ./website/terraform
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
