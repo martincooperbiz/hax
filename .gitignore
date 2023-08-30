@@ -225,3 +225,7 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# next.js
+.next/
+out/

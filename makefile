@@ -20,4 +20,4 @@ build-website:
 
 run-website:
 	@cd website/webapp && \
-	npm start
+	npx serve@latest out
