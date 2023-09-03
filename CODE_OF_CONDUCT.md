@@ -1,6 +1,6 @@
 # Code of conduct
 
-Tarek Mulla expects contributors to act professionally and respectfully.
+TLabs expects contributors to act professionally and respectfully.
 
 Specifically:
 
@@ -13,7 +13,6 @@ Should you experience anything that makes you feel unwelcome, please contact me 
 
 ## Questions \ Contact
 
-You can contact Tarek Mulla directly using one of the following:
-* Linkedin: [Tarek Mulla](https://www.linkedin.com/in/tarekmulla/)
-* Personal Email [tarek@mulla.au](mailto:tarek@mulla.au)
-* Contact form [mulla.au](https://mulla.au)
+You can contact us directly using one of the following:
+* 🖥️ Website: [haxsec.com](https://www.haxsec.com/)
+* ✉️ Support Email [support@haxsec.com](mailto:support@haxsec.com)

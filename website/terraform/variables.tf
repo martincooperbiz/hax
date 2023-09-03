@@ -22,13 +22,13 @@ variable "tags" {
 variable "domain" {
   type        = string
   description = "The application domain"
-  default     = "hax.mulla.au"
+  default     = "haxsec.com"
 }
 
 variable "alert_emails" {
   type        = list(string)
   description = "The email addresses list"
-  default     = ["alert@mulla.au"]
+  default     = ["alert@haxsec.com"]
 }
 
 variable "images_path" {

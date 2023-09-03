@@ -5,7 +5,7 @@
 HaX is an AI-powered Cybersecurity tool designed to detect website vulnerabilities. Its cloud connection enhances capabilities for advanced analytics and modeling.
 
 <p align="center">
-  <img src="/images/HaX.png" alt="design" width="40%"/>
+  <img src="/images/hax.png" alt="design" width="40%"/>
 </p>
 
 
@@ -54,8 +54,6 @@ _**Note**: Those steps are working for both macOS, and Linux_
 
 ## Who do I talk to?
 
-You can contact Tarek Mulla directly using one of the following:
-* 🖥️ Website: [hax.mulla.au](https://www.hax.mulla.au/)
-* 👔 Linkedin: [Tarek Mulla](https://www.linkedin.com/in/tarekmulla/)
-* ✉️ Personal Email [tarek@mulla.au](mailto:tarek@mulla.au)
-* 📇 Contact form [mulla.au](https://mulla.au)
+You can contact us directly using one of the following:
+* 🖥️ Website: [haxsec.com](https://www.haxsec.com/)
+* ✉️ Support Email [support@haxsec.com](mailto:support@haxsec.com)

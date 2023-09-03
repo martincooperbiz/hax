@@ -1,6 +1,6 @@
 """Module of the main application form"""
 from os.path import abspath, dirname, isfile
-from tkinter import Tk
+from tkinter import PhotoImage, Tk
 
 from classes.enums import Windows
 from frames.about_frame import AboutFrame
@@ -27,6 +27,9 @@ class App(Tk):
     self.title("HaX Cybersecurity tool")
     self.geometry(self.app_config["app"]["size"])  # set the size of the app to specific dimension
     self.resizable(False, False)
+
+    photo = PhotoImage(file=self.app_config["images"]["icon"])
+    self.iconphoto(False, photo)
 
     self.menubar.init_items()
     self.configure(menu=self.menubar)

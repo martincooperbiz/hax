@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"description": "HaX tool website",
 	"author": {
-		"name": "Tarek Mulla",
-		"email": "tarek@mulla.au",
-		"url": "https://mulla.au"
+		"name": "TLabs",
+		"email": "support@haxsec.com",
+		"url": "https://haxsec.com"
 	},
 	"license": "MIT",
 	"private": true,

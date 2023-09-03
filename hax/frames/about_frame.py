@@ -5,11 +5,11 @@ ABOUT_TXT = """
 HaX is an AI-powered Cybersecurity tool designed to detect website vulnerabilities.
 Its cloud connection enhances capabilities for advanced analytics and modeling.
 
-Crafted by Tarek Mulla, this tool is open-source, operating under the GPL-3.0 license.
+Crafted by TLabs, this tool is open-source, operating under the GPL-3.0 license.
 
 For more details please visit:
 """
-LINK = "https://hax.mulla.au"
+LINK = "https://haxsec.com"
 
 
 class AboutFrame(BaseFrame):
