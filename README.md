@@ -5,7 +5,7 @@
 HaX is an AI-powered Cybersecurity tool designed to detect website vulnerabilities. Its cloud connection enhances capabilities for advanced analytics and modeling.
 
 <p align="center">
-  <img src="/images/hax.png" alt="design" width="40%"/>
+  <img src="/images/logo.png" alt="design" width="40%"/>
 </p>
 
 

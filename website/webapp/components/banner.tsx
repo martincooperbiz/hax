@@ -18,7 +18,7 @@ export default function Banner() {
         <div className="relative pt-16 md:pt-20">
 
           <div style={{ display: "flex", justifyContent: "center",}}>
-            <img src="https://haxsec.com/images/hax.png" width="400" alt="logo" />
+            <img src="https://haxsec.com/images/logo.png" width="400" alt="logo" />
           </div>
 
           {/* Section header */}

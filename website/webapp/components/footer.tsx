@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="md:col-span-2">
                 {/* Logo */}
                 <Link href="/" className="inline-block" aria-label="hax">
-                  <img width="200" src="https://haxsec.com/images/hax.png" />
+                  <img width="200" src="https://haxsec.com/images/logo.png" />
                 </Link>
             </div>
 
