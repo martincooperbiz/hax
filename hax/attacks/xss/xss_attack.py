@@ -11,5 +11,5 @@ class XssAttack(Attack):
 
   def is_attack_succeeded(self):
     """Examine the response content to identify whether the CrossSite Scripting attack was successful"""
-    response_body = self.attack_request.response.content.decode()
+    response_body = self.response.content.decode()
     return search(pattern=XSS_SUCCESS_PATTEREN, string=response_body, flags=IGNORECASE)

@@ -4,8 +4,8 @@ from os.path import abspath, dirname
 from tkinter import INSERT, Tk
 
 from attacks.xss.xss_attack import XssAttack
-from classes.attack_request import AttackRequest, AttackType, RequestType
-from frames.base_frame import AttackFrame
+from classes.enums import AttackType, RequestType
+from frames.attack_frame import AttackFrame
 
 
 class XssFrame(AttackFrame):
@@ -35,7 +35,7 @@ class XssFrame(AttackFrame):
     (self.opt_request_type, self.value_request_type) = self.add_option("Request type", *(RequestType.get_names()))
     self.opt_request_type.grid(row=3, column=1, columnspan=2, sticky="w")
 
-    self.add_button("Start Attack", command=self.init_attack).grid(row=4, column=0, columnspan=3)
+    self.add_button("Start Attack", self.init_attack).grid(row=4, column=0, columnspan=3)
 
     self.progbar_attacks = self.add_progressbar(500)
     self.progbar_attacks.grid(row=5, column=0, columnspan=3, pady=(10, 10))
@@ -55,6 +55,5 @@ class XssFrame(AttackFrame):
     request_type = RequestType[self.value_request_type.get()]
     parameters = self.input_parameters.get().split(",")
     placeholder_text = self.input_placeholder_text.get()
-    request = AttackRequest(url, request_type, parameters, AttackType.XSS)
-    self.attack = XssAttack(request)
+    self.attack = XssAttack(url, request_type, parameters, AttackType.XSS)
     self.start_attack(placeholder_text)

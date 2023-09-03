@@ -20,6 +20,6 @@ class AboutFrame(BaseFrame):
   def __init_frame__(self):
     super().__init_frame__()
     self.columnconfigure(0, weight=1)
-    self.add_image(self.master.setting["images"]["logo"], 0, 0, pady=(25, 0))
+    self.add_image(self.master.app_config["images"]["logo"], 0, 0, pady=(25, 0))
     self.add_label(ABOUT_TXT, justify="center", wraplength=550).grid(row=1, column=0)
     self.add_link(LINK, LINK, 2, 0)

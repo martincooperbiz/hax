@@ -27,3 +27,9 @@ class Windows(Enum):
   SQLI = 2
   SETTING = 20
   ABOUT = 30
+
+
+class Table(Enum):
+  """All tables in the database"""
+  SETTING = 1
+  ATTACK = 2

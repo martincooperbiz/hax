@@ -229,3 +229,6 @@ typings/
 # next.js
 .next/
 out/
+
+# database files
+*.db
