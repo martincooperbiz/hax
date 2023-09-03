@@ -21,3 +21,6 @@ build-website:
 run-website:
 	@cd website/webapp && \
 	npx serve@latest out
+
+package:
+	@pyinstaller --noconfirm --windowed --name="HaX" --icon="hax/static/images/icon.png" --add-data="hax/config.yml:." --add-data="hax/static:static" hax/main.py

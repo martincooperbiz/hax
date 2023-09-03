@@ -1,5 +1,5 @@
 """Module of the main application form"""
-from os.path import abspath, dirname, isfile
+from os.path import dirname, isfile
 from tkinter import PhotoImage, Tk
 
 from classes.enums import Windows
@@ -15,9 +15,10 @@ from yaml import safe_load
 class App(Tk):
   """class represents the main application form"""
   def __init__(self):
+    self.base_dir = dirname(__file__)
     super().__init__()
     self.app_config = {}
-    self.load_setting(f"{dirname(abspath(__file__))}/config.yml")
+    self.load_setting(self.base_dir + "/config.yml")
     self.main_menu = MainMenu(master=self)
     self.menubar = MenuBar(master=self)
     self.__init_components__()
@@ -28,7 +29,7 @@ class App(Tk):
     self.geometry(self.app_config["app"]["size"])  # set the size of the app to specific dimension
     self.resizable(False, False)
 
-    photo = PhotoImage(file=self.app_config["images"]["icon"])
+    photo = PhotoImage(file=self.base_dir + self.app_config["images"]["icon"])
     self.iconphoto(False, photo)
 
     self.menubar.init_items()

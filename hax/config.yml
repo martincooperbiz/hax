@@ -1,7 +1,7 @@
 images:
-  logo: "hax/static/images/logo.png"
-  icon: "hax/static/images/icon.png"
-  path: "hax/static/images"
+  logo: "/static/images/logo.png"
+  icon: "/static/images/icon.png"
+  path: "/static/images"
 app:
   size: "800x375"
 style:

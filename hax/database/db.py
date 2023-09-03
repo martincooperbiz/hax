@@ -1,4 +1,5 @@
 """"Database operations"""
+from os.path import dirname
 from sqlite3 import Connection, connect
 
 
@@ -11,7 +12,8 @@ class DB:
     return cls.instance
 
   def __init__(self):
-    self.con: Connection = connect("hax.db")
+    db_path = dirname(dirname(__file__)) + "/hax.db"
+    self.con: Connection = connect(db_path)
     self.__create_tables__()
 
   def __create_tables__(self):

@@ -63,7 +63,7 @@ class MainMenu(Frame):
   def create_menu_item(self, parent, text, image, window, click_event_func):
     """Create Button label"""
     if image and text:
-      img = ImageTk.PhotoImage((Image.open(f"{self.master.app_config['images']['path']}/{image}")).resize((30, 30)))
+      img = ImageTk.PhotoImage((Image.open(f"{self.master.base_dir}{self.master.app_config['images']['path']}/{image}")).resize((30, 30)))
       btn_lbl = Label(parent, width=200, height=50, text=text, image=img, compound='left',
                       bg=self.master.app_config["style"]["secondary_color"],
                       foreground=self.master.app_config["style"]["forth_color"],
