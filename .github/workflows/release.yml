@@ -2,10 +2,13 @@ name: Release
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+    - 'v*'
 
 permissions:
-  contents: read
-  pull-requests: write
+  contents: write
+  pull-requests: read
 
 defaults:
   run:
@@ -18,7 +21,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest]
+        include:
+          - os: macos-latest
+            TARGET: macos
+            CMD_BUILD: >
+              pyinstaller --noconfirm --windowed --name="HaX" --icon="hax/static/images/icon.png" --add-data="hax/config.yml:." --add-data="hax/static:static" hax/main.py &&
+              ./scripts/bundle.sh
+            OUT_FILE_NAME: HaX.dmg
+            ASSET_MIME: application/octet-stream
 
     steps:
       - name: Checkout
@@ -29,11 +39,34 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install dependencies and tools
         run: |
+          brew install create-dmg
           python -m pip install --upgrade pip
           pip install -r hax/requirements.txt pyinstaller
 
-      - name: Package the app
+      - name: Package ${{matrix.TARGET}} version
         run: |
-          pyinstaller --noconfirm --windowed --name="HaX" --icon="hax/static/images/icon.png" --add-data="hax/config.yml:." --add-data="hax/static:static" hax/main.py
+          ${{matrix.CMD_BUILD}}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/${{ matrix.OUT_FILE_NAME}}
+          asset_name: ${{ matrix.OUT_FILE_NAME}}
+          asset_content_type: ${{ matrix.ASSET_MIME}}
